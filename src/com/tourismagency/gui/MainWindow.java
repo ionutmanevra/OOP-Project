@@ -20,7 +20,7 @@ public class MainWindow extends JFrame {
         add(titleLabel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
-        buttonPanel.setOpaque(false); // Panou transparent
+        buttonPanel.setOpaque(false);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(20, 20, 20, 20);
@@ -50,7 +50,6 @@ public class MainWindow extends JFrame {
         button.setFont(new Font("SansSerif", Font.BOLD, 16));
         button.setPreferredSize(new Dimension(180, 60));
         button.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setOpaque(true);
         button.setBorder(BorderFactory.createLineBorder(Color.decode("#BF360C"), 2));
 
