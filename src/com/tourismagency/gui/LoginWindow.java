@@ -37,7 +37,6 @@ public class LoginWindow extends JFrame {
         button.setFocusPainted(false);
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
         button.setBorder(BorderFactory.createLineBorder(Color.decode("#BF360C"), 2));
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setOpaque(true);
 
         button.addMouseListener(new MouseAdapter() {

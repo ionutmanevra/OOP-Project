@@ -1,7 +1,7 @@
 package com.tourismagency.models;
 
 import com.tourismagency.interfaces.Searchable;
-import com.tourismagency.util.DatabaseUtils;
+import com.tourismagency.utils.DatabaseUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
