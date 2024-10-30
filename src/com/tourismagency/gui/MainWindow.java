@@ -20,6 +20,7 @@ public class MainWindow extends JFrame {
         add(titleLabel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setBackground(Color.decode("#004D40"));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(20, 20, 20, 20);
