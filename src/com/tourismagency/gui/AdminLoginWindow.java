@@ -82,7 +82,6 @@ public class AdminLoginWindow extends JDialog {
         button.setFocusPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setOpaque(true);
 
         button.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -16,7 +16,6 @@ public class AdminDashboard extends JFrame {
         JButton applyDiscountButton = createStyledButton("Aplică Reducere");
         JButton backToMenuButton = createStyledButton("Înapoi la Meniu"); // Butonul nou
 
-        // Acțiunile butoanelor existente
         addPackageButton.addActionListener(e -> openAddPackageWindow());
         removePackageButton.addActionListener(e -> openRemovePackageWindow());
         applyDiscountButton.addActionListener(e -> openApplyDiscountWindow());

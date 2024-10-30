@@ -1,4 +1,4 @@
-package com.tourismagency.util;
+package com.tourismagency.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
