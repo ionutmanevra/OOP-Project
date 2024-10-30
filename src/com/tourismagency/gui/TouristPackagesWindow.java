@@ -22,7 +22,6 @@ public class TouristPackagesWindow extends JFrame {
         packagesPanel.setLayout(new GridLayout(0, 2, 15, 15));
         packagesPanel.setBackground(Color.decode("#004D40"));
 
-        // Create a scroll pane for the packages panel
         JScrollPane scrollPane = new JScrollPane(packagesPanel);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         scrollPane.getViewport().setBackground(Color.decode("#004D40"));
@@ -38,6 +37,7 @@ public class TouristPackagesWindow extends JFrame {
     }
 
     private void loadPackages() {
+        packagesPanel.removeAll();
         try (Connection connection = DatabaseUtils.connect()) {
             String sql = "SELECT * FROM tourist_packages WHERE available = true";
             Statement statement = connection.createStatement();
@@ -53,6 +53,8 @@ public class TouristPackagesWindow extends JFrame {
                 JPanel packagePanel = createPackagePanel(destination, duration, price, description, packageId);
                 packagesPanel.add(packagePanel);
             }
+            packagesPanel.revalidate();
+            packagesPanel.repaint();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -93,14 +95,40 @@ public class TouristPackagesWindow extends JFrame {
     }
 
     private void filterPackages() {
-        String input = JOptionPane.showInputDialog(this, "Enter max price or duration (in days):");
-        if (input != null) {
+        String input = JOptionPane.showInputDialog(this, "Enter max duration (in days):");
+        if (input != null && !input.trim().isEmpty()) {
             try {
                 double filterValue = Double.parseDouble(input);
-                // Implement filtering logic here
+                packagesPanel.removeAll();
+                loadFilteredPackages(filterValue);
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Invalid input.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid input. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+    }
+
+    private void loadFilteredPackages(double filterValue) {
+        try (Connection connection = DatabaseUtils.connect()) {
+            String sql = "SELECT * FROM tourist_packages WHERE available = true AND (duration <= ? OR price <= ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1, filterValue);
+            preparedStatement.setDouble(2, filterValue);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String destination = resultSet.getString("destination");
+                int duration = resultSet.getInt("duration");
+                double price = resultSet.getDouble("price");
+                String description = resultSet.getString("description");
+                int packageId = resultSet.getInt("id");
+
+                JPanel packagePanel = createPackagePanel(destination, duration, price, description, packageId);
+                packagesPanel.add(packagePanel);
+            }
+            packagesPanel.revalidate();
+            packagesPanel.repaint();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
