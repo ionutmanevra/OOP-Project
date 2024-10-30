@@ -14,17 +14,19 @@ public class AdminDashboard extends JFrame {
         JButton addPackageButton = createStyledButton("Adaugă Pachet");
         JButton removePackageButton = createStyledButton("Elimină Pachet");
         JButton applyDiscountButton = createStyledButton("Aplică Reducere");
-        JButton backToMenuButton = createStyledButton("Înapoi la Meniu"); // Butonul nou
+        JButton viewClientsButton = createStyledButton("Vizualizează Clienți");
+        JButton backToMenuButton = createStyledButton("Înapoi la Meniu");
 
         addPackageButton.addActionListener(e -> openAddPackageWindow());
         removePackageButton.addActionListener(e -> openRemovePackageWindow());
         applyDiscountButton.addActionListener(e -> openApplyDiscountWindow());
-
+        viewClientsButton.addActionListener(e -> openViewClientsWindow());
         backToMenuButton.addActionListener(e -> backToMenu());
 
         add(addPackageButton);
         add(removePackageButton);
         add(applyDiscountButton);
+        add(viewClientsButton);
         add(backToMenuButton);
     }
 
@@ -62,6 +64,11 @@ public class AdminDashboard extends JFrame {
     private void openApplyDiscountWindow() {
         ApplyDiscountWindow applyDiscountWindow = new ApplyDiscountWindow();
         applyDiscountWindow.setVisible(true);
+    }
+
+    private void openViewClientsWindow() {
+        ViewClientsWindow viewClientsWindow = new ViewClientsWindow();
+        viewClientsWindow.setVisible(true);
     }
 
     private void backToMenu() {
