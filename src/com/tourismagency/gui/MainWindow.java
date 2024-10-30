@@ -30,7 +30,7 @@ public class MainWindow extends JFrame {
         styleButton(clientButton);
         styleButton(adminButton);
 
-        clientButton.addActionListener(e -> new LoginWindow().setVisible(true));
+        clientButton.addActionListener(e -> new TouristPackagesWindow().setVisible(true));
         adminButton.addActionListener(e -> new AdminLoginWindow(this).setVisible(true));
 
         gbc.gridx = 0;

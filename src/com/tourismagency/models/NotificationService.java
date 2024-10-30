@@ -1,16 +1,17 @@
 package com.tourismagency.models;
 
-import com.tourismagency.interfaces.Notifiable;
+public abstract class NotificationService {
 
-public class NotificationService implements Notifiable {
-    private String serviceName;
+    protected String serviceName;
 
     public NotificationService(String serviceName) {
         this.serviceName = serviceName;
     }
 
+    public abstract void sendNotification(String message);
+
     @Override
-    public void sendNotification(String message) {
-        System.out.println("[" + serviceName + "] Sending notification: " + message);
+    public String toString() {
+        return "NotificationService{name='" + serviceName + "'}";
     }
 }
